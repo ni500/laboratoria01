@@ -1,0 +1,47 @@
+<mat-card class="m-16">
+  <form [formGroup]="newPostForm">
+    <div fxLayout="column">
+      <mat-form-field>
+        <textarea
+          matInput
+          formControlName="text"
+          placeholder="Publica un comentario"
+        ></textarea>
+        <mat-error>Debes agregar un comentario para publicar.</mat-error>
+      </mat-form-field>
+      <label for="file">Subir Imágen (opcional):</label>
+      <input type="file" (change)="uploadImage($event)" accept=".png,.jpg" />
+      <mat-progress-bar
+        class="example-margin"
+        color="primary"
+        mode="determinate"
+        [value]="uploadProgress | async"
+        [bufferValue]="bufferValue"
+      >
+      </mat-progress-bar>
+      <div>
+        <mat-form-field>
+          <mat-select formControlName="privacy">
+            <mat-option
+              *ngFor="let option of privacyOptions"
+              [value]="option.value"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          *ngIf="isNewPost"
+          mat-button
+          color="primary"
+          (click)="publish()"
+        >
+          Publicar
+        </button>
+        <button *ngIf="!isNewPost" mat-button color="primary" (click)="edit()">
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-card>

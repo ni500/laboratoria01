@@ -1,0 +1,45 @@
+<div style="margin-left: 30%; margin-right: 30%;">
+  <form [formGroup]="loginForm">
+    <mat-form-field style="margin-top: 16px">
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+      />
+      <mat-error>
+        Por favor ingresa un <strong>email</strong> válido.
+      </mat-error>
+      <!-- <mat-error *ngIf="email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error> -->
+    </mat-form-field>
+    <mat-form-field style="margin-top: 16px">
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+      />
+      <mat-error>
+        Por favor ingresa una contraseña de más de 6 caracteres.
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <div style="margin-top: 16px;">
+    <mat-spinner *ngIf="loading" [mode]="indeterminate"> </mat-spinner>
+
+    <div *ngIf="registeredUser$ | async; else noUSer">
+      <button *ngIf="!loading" mat-raised-button (click)="login()">
+        Iniciar Sesión
+      </button>
+    </div>
+
+    <ng-template #noUSer>
+      <button *ngIf="!loading" mat-raised-button (click)="register()">
+        Crear Cuenta
+      </button>
+    </ng-template>
+  </div>
+</div>
