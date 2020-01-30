@@ -28,7 +28,7 @@
   </form>
 
   <div style="margin-top: 16px;">
-    <mat-spinner *ngIf="loading" [mode]="indeterminate"> </mat-spinner>
+    <mat-spinner *ngIf="loading" mode="indeterminate"> </mat-spinner>
 
     <div *ngIf="registeredUser$ | async; else noUSer">
       <button *ngIf="!loading" mat-raised-button (click)="login()">

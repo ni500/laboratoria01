@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       tap(() => (this.loading = true)),
       debounceTime(2000),
       switchMap(form => {
-        if (this.loginForm.valid) {
+        if (this.loginForm.value.email) {
           return this.auth.lookUpUser(form.email);
         } else {
           return of(false);
