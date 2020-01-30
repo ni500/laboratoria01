@@ -1,9 +1,7 @@
 <app-edit-post [user]="user"></app-edit-post>
 <div class="m-16">
   <mat-button-toggle-group [(ngModel)]="filter">
-    <mat-button-toggle
-      value="public"
-      (change)="filterPosts('privacy', $event.value)"
+    <mat-button-toggle value="public" (change)="getAllPosts()"
       >Público</mat-button-toggle
     >
     <mat-button-toggle

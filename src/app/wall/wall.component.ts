@@ -1,21 +1,15 @@
-import { Observable } from 'rxjs';
-import { WallService } from './wall.service';
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input
+  Component,
+  Input,
+  OnInit
 } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  Validators
-} from '@angular/forms';
-import { User } from '../models/user';
-import { Post } from '../models/post';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { Post } from '../models/post';
+import { User } from '../models/user';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { WallService } from './wall.service';
 
 @Component({
   selector: 'app-wall',
@@ -52,8 +46,10 @@ export class WallComponent implements OnInit {
   }
 
   filterPosts(path: string, value: string) {
-    // console.log(path);
-    // console.log(value);
     this.posts$ = this.wallService.filterPosts(path, value);
+  }
+
+  getAllPosts() {
+    this.posts$ = this.wallService.getPosts();
   }
 }
